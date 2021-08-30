@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 
@@ -8,26 +9,22 @@ import { Author } from './author';
   providedIn: 'root'
 })
 export class AuthorService {
-  AUTHORS: Author[] = [{
-    id: 1,
-    firstName: "Bob",
-    lastName: "Maximillian Gustav III"
-  },
-  {
-    id: 2,
-    firstName: "Boba",
-    lastName: "Asunsão da Paz"
-  }];
+  private  authorsUrl: string = 'http://localhost:8080/api/author';
+  private  httpOptions = {headers: new HttpHeaders({
+    "Content-type": `application/json`
+  })};
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getAuthors(): Observable<Author[]> {
-    const authors = of(this.AUTHORS);
-    return authors;
+    return this.http.get<Author[]>(`${this.authorsUrl}`);
   }
 
   getAuthor(id: number): Observable<Author> {
-    const author = this.AUTHORS.find(x => x.id === id)!;
-    return of(author);
+    return this.http.get<Author>(`${this.authorsUrl}\\${id}`);
+  }
+
+  post(author: Author): Observable<Author> {
+    return this.http.post<Author>(this.authorsUrl, author);
   }
 }
