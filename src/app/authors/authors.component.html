@@ -1,0 +1,9 @@
+<h2>Authors</h2>
+
+<ul>
+    <li *ngFor="let author of authors">
+        <a routerLink="/authors/{{author.id}}">
+            <span>{{author.firstName}} {{author.lastName}}</span>
+        </a>
+    </li>
+</ul>
