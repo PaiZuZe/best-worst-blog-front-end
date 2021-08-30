@@ -26,4 +26,10 @@ export class AuthorDetailComponent implements OnInit {
       .subscribe(author => this.author = author);
   }
 
+  delete(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.authorService.deleteById(id)
+      .subscribe(resp => console.log(resp));
+  }
+
 }
