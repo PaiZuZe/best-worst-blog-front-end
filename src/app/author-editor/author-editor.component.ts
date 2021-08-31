@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 
-import { AuthorService } from '../author.service';
+import { AuthorService } from '../service/author.service';
 
 @Component({
   selector: 'app-author-editor',
@@ -15,13 +17,14 @@ export class AuthorEditorComponent implements OnInit {
     lastName: new FormControl(''),
   });
   
-  constructor(private authorService: AuthorService) { }
+  constructor(private route: ActivatedRoute, private authorService: AuthorService, private location: Location) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    this.authorService.post(this.authorForm.value)
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.authorService.put(id, this.authorForm.value)
       .subscribe(resp => console.log(resp));
   }
 

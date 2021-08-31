@@ -8,13 +8,15 @@ import { AuthorsComponent } from './authors/authors.component';
 import { AuthorDetailComponent } from './author-detail/author-detail.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthorEditorComponent } from './author-editor/author-editor.component';
+import { AuthorCreatorComponent } from './author-creator/author-creator.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthorsComponent,
     AuthorDetailComponent,
-    AuthorEditorComponent
+    AuthorEditorComponent,
+    AuthorCreatorComponent
   ],
   imports: [
     BrowserModule,

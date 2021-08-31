@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Author } from '../author';
-import { AuthorService } from '../author.service';
+import { Author } from '../model/author';
+import { AuthorService } from '../service/author.service';
 
 @Component({
   selector: 'app-authors',

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 
-import { Author } from './author';
+import { Author } from '../model/author';
 
 @Injectable({
   providedIn: 'root'
@@ -28,8 +28,8 @@ export class AuthorService {
     return this.http.post<Author>(this.authorsUrl, author, this.httpOptions);
   }
 
-  put(author: Author): Observable<Author> {
-    return this.http.put<Author>(`${this.authorsUrl}\\${author.id}`, author, this.httpOptions)
+  put(id: number, author: Author): Observable<Author> {
+    return this.http.put<Author>(`${this.authorsUrl}\\${id}`, author, this.httpOptions)
   }
 
   deleteById(id: number): Observable<unknown> {
