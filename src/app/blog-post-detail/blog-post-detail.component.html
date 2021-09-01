@@ -1,5 +1,7 @@
 <div *ngIf="blogPost">
     <h2>{{blogPost.title}}</h2>
-    <h3>By: {{blogPost.author_id}}</h3>
+    <h3>By: {{blogPost.authorId}}</h3>
     <p>{{blogPost.textBody}}</p>
 </div>
+
+<button (click)="delete()">Remove post</button>

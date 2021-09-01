@@ -28,6 +28,8 @@ export class BlogPostDetailComponent implements OnInit {
 
   delete(): void {
     const id: number = Number(this.route.snapshot.paramMap.get('id'));
+    this.blogPostService.delete(id)
+      .subscribe(resp => console.log(resp));
   }
 
 }

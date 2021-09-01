@@ -13,7 +13,7 @@ export class BlogPostCreatorComponent implements OnInit {
   blogPostForm = new FormGroup({
     title: new FormControl(''),
     textBody: new FormControl(''),
-    author_id: new FormControl(''),
+    authorId: new FormControl(''),
   });
 
   constructor(private blogPostService: BlogPostService) { }
