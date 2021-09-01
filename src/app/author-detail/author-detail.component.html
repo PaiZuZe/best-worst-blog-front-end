@@ -9,3 +9,11 @@
 <button (click)="donate()">Donate 10$</button>
 
 <button (click)="delete()">Delete</button>
+
+<ul>
+    <li *ngFor="let blogPost of blogPosts">
+        <a routerLink="/posts/{{blogPost.id}}">
+            <span>{{blogPost.title}}</span>
+        </a>
+    </li>
+</ul>

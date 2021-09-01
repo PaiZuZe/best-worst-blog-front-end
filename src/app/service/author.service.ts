@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 import { Author } from '../model/author';
+import { BlogPost } from '../model/blog-post';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class AuthorService {
 
   getAuthor(id: number): Observable<Author> {
     return this.http.get<Author>(`${this.authorsUrl}/${id}`);
+  }
+
+  getAuthorBlogPosts(id: number): Observable<BlogPost[]> {
+    return this.http.get<BlogPost[]>(`${this.authorsUrl}/${id}/blogPosts`);
   }
 
   post(author: Author): Observable<Author> {
