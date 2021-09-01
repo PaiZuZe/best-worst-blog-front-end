@@ -1,0 +1,9 @@
+<form [formGroup]="blogPostForm" (ngSubmit)=onSubmit()>
+    <label for="title">Title: </label>
+    <input id="title" type="text" formControlName="title">
+    <label for="textBody">Text: </label>
+    <input id="textBody" type="text" formControlName="textBody">
+    <label for="author_id">Author ID: </label>
+    <input id="author_id" type="text" formControlName="author_id">
+    <button type="submit" [disabled]="!blogPostForm.valid">Publish</button>
+</form>

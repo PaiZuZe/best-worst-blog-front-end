@@ -9,6 +9,11 @@ import { AuthorDetailComponent } from './author-detail/author-detail.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthorEditorComponent } from './author-editor/author-editor.component';
 import { AuthorCreatorComponent } from './author-creator/author-creator.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HomeComponent } from './home/home.component';
+import { BlogPostsComponent } from './blog-posts/blog-posts.component';
+import { BlogPostCreatorComponent } from './blog-post-creator/blog-post-creator.component';
+import { BlogPostDetailComponent } from './blog-post-detail/blog-post-detail.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +21,12 @@ import { AuthorCreatorComponent } from './author-creator/author-creator.componen
     AuthorsComponent,
     AuthorDetailComponent,
     AuthorEditorComponent,
-    AuthorCreatorComponent
+    AuthorCreatorComponent,
+    PageNotFoundComponent,
+    HomeComponent,
+    BlogPostsComponent,
+    BlogPostCreatorComponent,
+    BlogPostDetailComponent
   ],
   imports: [
     BrowserModule,

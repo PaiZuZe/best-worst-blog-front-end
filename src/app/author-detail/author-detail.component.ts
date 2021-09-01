@@ -32,4 +32,10 @@ export class AuthorDetailComponent implements OnInit {
       .subscribe(resp => console.log(resp));
   }
 
+  donate(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.authorService.donate(id)
+      .subscribe(resp => console.log(resp));
+  }
+
 }

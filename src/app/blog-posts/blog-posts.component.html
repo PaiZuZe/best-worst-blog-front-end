@@ -1,0 +1,11 @@
+<h2>Enjoy this blog posts</h2>
+
+<app-blog-post-creator></app-blog-post-creator>
+
+<ul>
+    <li *ngFor="let blogPost of blogPosts">
+        <a routerLink="/posts/{{blogPost.id}}">
+            <span>{{blogPost.title}}</span>
+        </a>
+    </li>
+</ul>

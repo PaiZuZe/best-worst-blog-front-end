@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 
@@ -21,7 +21,7 @@ export class AuthorService {
   }
 
   getAuthor(id: number): Observable<Author> {
-    return this.http.get<Author>(`${this.authorsUrl}\\${id}`);
+    return this.http.get<Author>(`${this.authorsUrl}/${id}`);
   }
 
   post(author: Author): Observable<Author> {
@@ -29,10 +29,15 @@ export class AuthorService {
   }
 
   put(id: number, author: Author): Observable<Author> {
-    return this.http.put<Author>(`${this.authorsUrl}\\${id}`, author, this.httpOptions)
+    return this.http.put<Author>(`${this.authorsUrl}/${id}`, author, this.httpOptions)
   }
 
   deleteById(id: number): Observable<unknown> {
-    return this.http.delete(`${this.authorsUrl}\\${id}`);
+    return this.http.delete(`${this.authorsUrl}/${id}`);
+  }
+
+  donate(id: number): Observable<any> {
+    const params = new HttpParams({fromString: "donation_amount=10"});
+    return this.http.put(`${this.authorsUrl}/${id}/donate`, null, {params});
   }
 }
