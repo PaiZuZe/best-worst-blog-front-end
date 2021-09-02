@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Author } from '../model/author';
 import { AuthorService } from '../service/author.service';
 import { BlogPost } from '../model/blog-post';
+import { DonationService } from '../service/donation.service';
 
 @Component({
   selector: 'app-author-detail',
@@ -16,7 +17,7 @@ export class AuthorDetailComponent implements OnInit {
   @Input() author?: Author;
   @Input() blogPosts?: BlogPost[];
 
-  constructor(private authorService: AuthorService, private location: Location, private route: ActivatedRoute) { }
+  constructor(private authorService: AuthorService, private donationService: DonationService, private location: Location, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getAuthor();
@@ -43,8 +44,7 @@ export class AuthorDetailComponent implements OnInit {
 
   donate(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.authorService.donate(id)
-      .subscribe(resp => console.log(resp));
+    this.donationService.post({authorId: id, donationAmount: 10.0})
+      .subscribe(res => console.log(res));
   }
-
 }
