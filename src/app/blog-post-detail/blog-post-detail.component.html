@@ -1,6 +1,8 @@
-<div *ngIf="blogPost">
+<div *ngIf="blogPost && author">
     <h2>{{blogPost.title}}</h2>
-    <h3>By: {{blogPost.authorId}}</h3>
+    <a routerLink="/authors/{{author.id}}">
+        <h3>By: {{author.firstName}} {{author.lastName}} </h3>
+    </a>
     <p>{{blogPost.textBody}}</p>
 </div>
 

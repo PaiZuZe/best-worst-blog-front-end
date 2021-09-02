@@ -1,9 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import {concatMap, tap} from 'rxjs/operators';
 
 import { BlogPost } from '../model/blog-post';
 import { BlogPostService } from '../service/blog-post.service';
+import { AuthorService } from '../service/author.service';
+import { Author } from '../model/author';
 
 @Component({
   selector: 'app-blog-post-detail',
@@ -13,8 +16,9 @@ import { BlogPostService } from '../service/blog-post.service';
 export class BlogPostDetailComponent implements OnInit {
 
   @Input() blogPost?: BlogPost;
+  @Input() author?: Author;
 
-  constructor(private blogPostService: BlogPostService, private route: ActivatedRoute, private location: Location) { }
+  constructor(private blogPostService: BlogPostService, private authorService: AuthorService, private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
     this.getBlogPost();
@@ -23,7 +27,11 @@ export class BlogPostDetailComponent implements OnInit {
   getBlogPost(): void {
     const id: number = Number(this.route.snapshot.paramMap.get('id'));
     this.blogPostService.getBlogPost(id)
-      .subscribe(blogPost => this.blogPost = blogPost);
+      .pipe(
+        tap(blogPost => this.blogPost = blogPost),
+        concatMap(blogPost => this.authorService.getAuthor(blogPost.authorId)),
+        tap(author => this.author = author)
+      ).subscribe();
   }
 
   delete(): void {
