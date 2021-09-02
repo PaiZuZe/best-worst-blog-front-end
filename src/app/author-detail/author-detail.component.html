@@ -1,4 +1,6 @@
-<app-author-editor></app-author-editor>
+<div *ngIf="author">
+    <app-author-editor [firstName]="author.firstName" [lastName]="author.lastName"> </app-author-editor>
+</div>
 
 <div *ngIf="author">
     <h2>{{author.firstName}} {{author.lastName}}</h2>

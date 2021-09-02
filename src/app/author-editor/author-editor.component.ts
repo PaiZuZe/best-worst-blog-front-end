@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -12,6 +12,9 @@ import { AuthorService } from '../service/author.service';
 })
 export class AuthorEditorComponent implements OnInit {
   
+  @Input() firstName?: string;
+  @Input() lastName?: string;
+
   authorForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
@@ -20,6 +23,9 @@ export class AuthorEditorComponent implements OnInit {
   constructor(private route: ActivatedRoute, private authorService: AuthorService, private location: Location) { }
 
   ngOnInit(): void {
+    this.authorForm.patchValue({firstName: this.firstName,
+      lastName: this.lastName  
+    });
   }
 
   onSubmit() {
