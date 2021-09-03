@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Author } from '../model/author';
 import { AuthorService } from '../service/author.service';
@@ -17,7 +17,7 @@ export class AuthorDetailComponent implements OnInit {
   @Input() author?: Author;
   @Input() blogPosts?: BlogPost[];
 
-  constructor(private authorService: AuthorService, private donationService: DonationService, private location: Location, private route: ActivatedRoute) { }
+  constructor(private authorService: AuthorService, private donationService: DonationService, private location: Location, private route: ActivatedRoute,private router: Router) { }
 
   ngOnInit(): void {
     this.getAuthor();
@@ -39,7 +39,7 @@ export class AuthorDetailComponent implements OnInit {
   delete(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.authorService.deleteById(id)
-      .subscribe(resp => console.log(resp));
+      .subscribe(resp => this.router.navigateByUrl("/authors"));
   }
 
   donate(): void {

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {concatMap, tap} from 'rxjs/operators';
 
 import { BlogPost } from '../model/blog-post';
@@ -18,7 +18,7 @@ export class BlogPostDetailComponent implements OnInit {
   @Input() blogPost?: BlogPost;
   @Input() author?: Author;
 
-  constructor(private blogPostService: BlogPostService, private authorService: AuthorService, private route: ActivatedRoute, private location: Location) { }
+  constructor(private blogPostService: BlogPostService, private authorService: AuthorService, private route: ActivatedRoute, private location: Location, private router: Router) { }
 
   ngOnInit(): void {
     this.getBlogPost();
@@ -37,7 +37,7 @@ export class BlogPostDetailComponent implements OnInit {
   delete(): void {
     const id: number = Number(this.route.snapshot.paramMap.get('id'));
     this.blogPostService.delete(id)
-      .subscribe(resp => console.log(resp));
+      .subscribe(resp => this.router.navigateByUrl("/posts"));
   }
 
 }

@@ -1,9 +1,14 @@
 <form [formGroup]="blogPostForm" (ngSubmit)=onSubmit()>
-    <label for="title">Title: </label>
-    <input id="title" type="text" formControlName="title">
-    <label for="textBody">Text: </label>
-    <input id="textBody" type="text" formControlName="textBody">
-    <label for="authorId">Author ID: </label>
-    <input id="authorId" type="text" formControlName="authorId">
+    <div>
+        <label for="title">Title: </label>
+        <input id="title" type="text" formControlName="title">
+    </div>
+    <div>
+        <label for="authorId">Author ID: </label>
+        <input id="authorId" type="text" formControlName="authorId">    
+    </div>
+    <div>
+        <textarea formControlName="textBody" cols="72" rows="50"></textarea>
+    </div>
     <button type="submit" [disabled]="!blogPostForm.valid">Publish</button>
 </form>

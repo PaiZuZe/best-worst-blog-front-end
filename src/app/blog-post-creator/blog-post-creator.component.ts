@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { BlogPostService } from '../service/blog-post.service';
 
@@ -16,13 +17,13 @@ export class BlogPostCreatorComponent implements OnInit {
     authorId: new FormControl(''),
   });
 
-  constructor(private blogPostService: BlogPostService) { }
+  constructor(private blogPostService: BlogPostService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(): void {
     this.blogPostService.post(this.blogPostForm.value)
-      .subscribe(resp => console.log(resp));
+      .subscribe(resp => this.router.navigateByUrl(`/posts/${resp.id}`));
   }
 }

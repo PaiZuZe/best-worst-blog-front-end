@@ -1,0 +1,29 @@
+nav {
+    list-style-type: none;
+    display: block;
+    margin: 0 0 1rem 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #686868;
+}
+
+nav p {
+    color: white;
+    display: inline;
+}
+
+nav a {
+    padding: 0rem 1rem 0rem 0rem;
+    float: right;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+nav a:active {
+    color: hotpink;
+}  
+
+nav a:hover {
+    color: hotpink;
+} 
