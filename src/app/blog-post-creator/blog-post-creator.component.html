@@ -1,14 +1,26 @@
 <form [formGroup]="blogPostForm" (ngSubmit)=onSubmit()>
     <div>
-        <label for="title">Title: </label>
-        <input id="title" type="text" formControlName="title">
+        <table>
+            <td>
+                <mat-form-field appearance="fill">
+                    <mat-label for="title">Title: </mat-label>
+                    <input matInput id="title" type="text" formControlName="title">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="fill">
+                    <mat-label for="authorId">Author ID: </mat-label>
+                    <input matInput id="authorId" type="text" formControlName="authorId">    
+                </mat-form-field>
+            </td>
+        </table>
     </div>
     <div>
-        <label for="authorId">Author ID: </label>
-        <input id="authorId" type="text" formControlName="authorId">    
+        <mat-form-field appearance="fill">
+            <textarea matInput formControlName="textBody"
+            cdkTextareaAutosize 
+            cdkAutosizeMinRows="20"></textarea>
+        </mat-form-field>
     </div>
-    <div>
-        <textarea formControlName="textBody" cols="72" rows="50"></textarea>
-    </div>
-    <button type="submit" [disabled]="!blogPostForm.valid">Publish</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!blogPostForm.valid">Publish</button>
 </form>

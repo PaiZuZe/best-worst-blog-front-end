@@ -1,7 +1,11 @@
 <form [formGroup]="authorForm" (ngSubmit)=onSubmit()>
-    <label for="firstName">First Name: </label>
-    <input id="firstName" type="text" formControlName="firstName">
-    <label for="lastName">Last Name: </label>
-    <input id="lastName" type="text" formControlName="lastName">
-    <button type="submit" [disabled]="!authorForm.valid">Update</button>
+    <mat-form-field appearance="fill">
+        <mat-label for="firstName">First Name: </mat-label>
+        <input matInput id="firstName" type="text" formControlName="firstName">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label for="lastName">Last Name: </mat-label>
+            <input matInput id="lastName" type="text" formControlName="lastName">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!authorForm.valid">Update</button>
 </form>

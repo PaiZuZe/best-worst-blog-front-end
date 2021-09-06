@@ -2,10 +2,11 @@
 
 <app-author-creator> </app-author-creator>
 
-<ul>
-    <li *ngFor="let author of authors">
+<mat-list>
+    <mat-list-item *ngFor="let author of authors">
         <a routerLink="/authors/{{author.id}}">
             <span>{{author.firstName}} {{author.lastName}}</span>
         </a>
-    </li>
-</ul>
+        <mat-divider></mat-divider>
+    </mat-list-item>
+</mat-list>

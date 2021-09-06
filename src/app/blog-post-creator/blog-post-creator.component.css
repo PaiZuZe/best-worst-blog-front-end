@@ -1,7 +1,5 @@
-textarea {
-    resize: none;
-}
-
-form {
-    display: block;
+mat-form-field {
+    min-width: 21rem;
+    max-width: 44rem;
+    width: 100%;
 }

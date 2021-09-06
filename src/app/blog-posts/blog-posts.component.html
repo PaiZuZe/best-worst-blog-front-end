@@ -2,10 +2,11 @@
 
 <app-blog-post-creator></app-blog-post-creator>
 
-<ul>
-    <li *ngFor="let blogPost of blogPosts">
+<mat-list>
+    <mat-list-item *ngFor="let blogPost of blogPosts">
         <a routerLink="/posts/{{blogPost.id}}">
             <span>{{blogPost.title}}</span>
         </a>
-    </li>
-</ul>
+        <mat-divider></mat-divider>
+    </mat-list-item>
+</mat-list>

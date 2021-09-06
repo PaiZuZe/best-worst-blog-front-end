@@ -1,10 +1,11 @@
 nav {
     list-style-type: none;
     display: block;
-    margin: 0 0 1rem 0;
-    padding: 0;
+    margin: 0rem 0rem 1rem 0rem;
+    padding: 1rem 0rem 0rem 0rem;
     overflow: hidden;
     background-color: #686868;
+    font-size: 30px;
 }
 
 nav p {
@@ -26,4 +27,4 @@ nav a:active {
 
 nav a:hover {
     color: hotpink;
-} 
+}
