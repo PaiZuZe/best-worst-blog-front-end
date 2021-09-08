@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BlogPostService } from '../service/blog-post.service';
 
@@ -14,9 +14,9 @@ export class BlogPostEditorComponent implements OnInit {
   @Input() authorId?: number;
 
   blogPostForm: FormGroup = new FormGroup({
-    title: new FormControl(''), 
-    textBody: new FormControl(''),
-    authorId: new FormControl('')
+    title: new FormControl('', [Validators.required]), 
+    textBody: new FormControl('', [Validators.required, Validators.maxLength(4000)]),
+    authorId: new FormControl('', [Validators.required])
   });
 
   constructor(private blogPostService: BlogPostService, private route: ActivatedRoute, private router: Router) { }
@@ -35,8 +35,10 @@ export class BlogPostEditorComponent implements OnInit {
     .subscribe(resp => {
       this.router.onSameUrlNavigation = "reload";
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-      this.router.navigate([this.router.url])
-    });
+      this.router.navigate([this.router.url])},
+      
+        error => window.alert(`${error.status}: The author already has a post with this title`)
+      );
   }
 
 }

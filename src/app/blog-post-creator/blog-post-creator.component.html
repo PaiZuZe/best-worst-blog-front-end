@@ -1,6 +1,6 @@
 <form [formGroup]="blogPostForm" (ngSubmit)=onSubmit()>
     <div>
-        <table>
+        <table> <tr>
             <td>
                 <mat-form-field appearance="fill">
                     <mat-label for="title">Title: </mat-label>
@@ -13,7 +13,7 @@
                     <input matInput id="authorId" type="text" formControlName="authorId">    
                 </mat-form-field>
             </td>
-        </table>
+        </tr> </table>
     </div>
     <div>
         <mat-form-field appearance="fill">

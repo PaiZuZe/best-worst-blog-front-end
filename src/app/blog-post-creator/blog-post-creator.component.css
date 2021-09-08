@@ -3,3 +3,7 @@ mat-form-field {
     max-width: 44rem;
     width: 100%;
 }
+
+td {
+    padding-right: 1rem;
+}

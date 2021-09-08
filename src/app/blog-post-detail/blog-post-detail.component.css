@@ -1,3 +1,11 @@
 p {
     white-space: pre-wrap;
+    padding: 0rem 10rem 0rem 10rem;
+}
+
+h2 {
+    padding: 0rem 10rem 0rem 10rem;
+}
+h3 {
+    padding: 0rem 10rem 0rem 10rem;
 }

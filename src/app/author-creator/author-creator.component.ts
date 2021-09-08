@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthorService } from '../service/author.service';
@@ -12,8 +12,8 @@ import { AuthorService } from '../service/author.service';
 export class AuthorCreatorComponent implements OnInit {
   
   authorForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
   });
   
   constructor(private authorService: AuthorService, private router: Router) { }
@@ -23,7 +23,8 @@ export class AuthorCreatorComponent implements OnInit {
 
   onSubmit() {
     this.authorService.post(this.authorForm.value)
-      .subscribe(resp => this.router.navigateByUrl(`authors/${resp.id}`));
+      .subscribe(resp => this.router.navigateByUrl(`authors/${resp.id}`),
+        error => window.alert(`${error.status}: This Author already exists`));
   }
 
 }

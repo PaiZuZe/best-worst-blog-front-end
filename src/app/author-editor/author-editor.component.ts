@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { AuthorService } from '../service/author.service';
 
@@ -16,8 +16,8 @@ export class AuthorEditorComponent implements OnInit {
   @Input() lastName?: string;
 
   authorForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
   });
   
   constructor(private route: ActivatedRoute, private authorService: AuthorService, private location: Location, private router: Router) { 
@@ -36,8 +36,10 @@ export class AuthorEditorComponent implements OnInit {
       .subscribe(resp => {
         this.router.onSameUrlNavigation = "reload";
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-        this.router.navigate([this.router.url])
-    });
+        this.router.navigate([this.router.url])},
+
+        error => window.alert(`${error.status}: This author already exists`)
+    );
   }
 
 }

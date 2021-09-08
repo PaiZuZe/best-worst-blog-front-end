@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { BlogPostService } from '../service/blog-post.service';
@@ -12,9 +12,9 @@ import { BlogPostService } from '../service/blog-post.service';
 export class BlogPostCreatorComponent implements OnInit {
 
   blogPostForm = new FormGroup({
-    title: new FormControl(''),
-    textBody: new FormControl(''),
-    authorId: new FormControl(''),
+    title: new FormControl('', [Validators.required]),
+    textBody: new FormControl('', [Validators.required, Validators.maxLength(4000)]),
+    authorId: new FormControl('', [Validators.required]),
   });
 
   constructor(private blogPostService: BlogPostService, private router: Router) { }
@@ -24,6 +24,8 @@ export class BlogPostCreatorComponent implements OnInit {
 
   onSubmit(): void {
     this.blogPostService.post(this.blogPostForm.value)
-      .subscribe(resp => this.router.navigateByUrl(`/posts/${resp.id}`));
+      .subscribe(resp => this.router.navigateByUrl(`/posts/${resp.id}`),
+        error => window.alert(`${error.status}: This author already has a post with this title OR no author with this ID exists`)
+      );
   }
 }
