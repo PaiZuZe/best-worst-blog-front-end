@@ -28,6 +28,10 @@ export class BlogPostService {
     return this.http.post<BlogPost>(this.blogPostUrl, blogPost, this.httpOptions);
   }
 
+  public put(id: number, blogPost: BlogPost): Observable<BlogPost> {
+    return this.http.put<BlogPost>(`${this.blogPostUrl}/${id}`, blogPost, this.httpOptions);
+  }
+
   public delete(id: number): Observable<unknown> {
     return this.http.delete(`${this.blogPostUrl}//${id}`);
   }

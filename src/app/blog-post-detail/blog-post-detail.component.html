@@ -1,9 +1,18 @@
-<div *ngIf="blogPost && author">
-    <h2>{{blogPost.title}}</h2>
-    <a routerLink="/authors/{{author.id}}">
-        <h3>By: {{author.firstName}} {{author.lastName}} </h3>
-    </a>
-    <p>{{blogPost.textBody}}</p>
-</div>
+<mat-tab-group dynamicHeight>
+    <mat-tab label="Post">
+        <div *ngIf="blogPost && author">
+            <h2>{{blogPost.title}}</h2>
+            <a routerLink="/authors/{{author.id}}">
+                <h3>By: {{author.firstName}} {{author.lastName}} </h3>
+            </a>
+            <p>{{blogPost.textBody}}</p>
+        </div>
+    </mat-tab>
+    <mat-tab label="Editor">
+        <div *ngIf="blogPost && author">
+            <app-blog-post-editor [title]="blogPost.title" [textBody]="blogPost.textBody" [authorId]="author.id"></app-blog-post-editor>
+        </div>
+    </mat-tab>
+</mat-tab-group>
 
 <button mat-raised-button color="primary" (click)="delete()">Remove post</button>

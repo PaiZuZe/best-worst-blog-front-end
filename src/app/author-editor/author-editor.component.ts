@@ -24,7 +24,8 @@ export class AuthorEditorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authorForm.patchValue({firstName: this.firstName,
+    this.authorForm.patchValue({
+      firstName: this.firstName,
       lastName: this.lastName  
     });
   }

@@ -1,0 +1,30 @@
+<form [formGroup]="blogPostForm" (ngSubmit)=onSubmit()>
+    <div>
+        <table>
+            <td>
+                <mat-form-field appearance="fill">
+                    <mat-label for="title">Title: </mat-label>
+                    <input matInput id="title" type="text" formControlName="title">
+                </mat-form-field>
+            </td>
+            <!--
+            <td>
+                <mat-form-field appearance="fill">
+                    <mat-label for="authorId">Author ID: </mat-label>
+                    <input matInput id="authorId" type="text" formControlName="authorId">    
+                </mat-form-field>
+            </td>
+            -->
+            <td>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!blogPostForm.valid">Edit</button>
+            </td>
+        </table>
+    </div>
+    <div>
+        <mat-form-field appearance="fill">
+            <textarea matInput formControlName="textBody"
+            cdkTextareaAutosize 
+            cdkAutosizeMinRows="20"></textarea>
+        </mat-form-field>
+    </div>
+</form>

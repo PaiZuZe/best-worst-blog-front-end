@@ -23,6 +23,7 @@ import { BlogPostsComponent } from './blog-posts/blog-posts.component';
 import { BlogPostCreatorComponent } from './blog-post-creator/blog-post-creator.component';
 import { BlogPostDetailComponent } from './blog-post-detail/blog-post-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BlogPostEditorComponent } from './blog-post-editor/blog-post-editor.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     BlogPostsComponent,
     BlogPostCreatorComponent,
-    BlogPostDetailComponent
+    BlogPostDetailComponent,
+    BlogPostEditorComponent
   ],
   imports: [
     BrowserModule,
