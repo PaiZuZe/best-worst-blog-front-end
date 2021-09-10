@@ -24,6 +24,7 @@ import { BlogPostCreatorComponent } from './blog-post-creator/blog-post-creator.
 import { BlogPostDetailComponent } from './blog-post-detail/blog-post-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlogPostEditorComponent } from './blog-post-editor/blog-post-editor.component';
+import { DonationCreatorComponent } from './donation-creator/donation-creator.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { BlogPostEditorComponent } from './blog-post-editor/blog-post-editor.com
     BlogPostsComponent,
     BlogPostCreatorComponent,
     BlogPostDetailComponent,
-    BlogPostEditorComponent
+    BlogPostEditorComponent,
+    DonationCreatorComponent
   ],
   imports: [
     BrowserModule,

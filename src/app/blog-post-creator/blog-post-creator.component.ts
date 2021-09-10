@@ -14,7 +14,7 @@ export class BlogPostCreatorComponent implements OnInit {
   blogPostForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
     textBody: new FormControl('', [Validators.required, Validators.maxLength(4000)]),
-    authorId: new FormControl('', [Validators.required]),
+    authorId: new FormControl('', [Validators.required, Validators.pattern("[0-9]+")]),
   });
 
   constructor(private blogPostService: BlogPostService, private router: Router) { }

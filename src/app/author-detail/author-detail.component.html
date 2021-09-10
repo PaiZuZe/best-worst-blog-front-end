@@ -16,9 +16,13 @@
             <app-author-editor [firstName]="author.firstName" [lastName]="author.lastName"> </app-author-editor>
         </div>
     </mat-tab>
+    <mat-tab label="Donation">
+        <div *ngIf="author">
+            <app-donation-creator [authorId]="author.id"></app-donation-creator>
+        </div>
+    </mat-tab>
 </mat-tab-group>
 
-<div>
-    <button mat-raised-button color="primary" (click)="donate()">Donate 10$</button>
+<div *ngIf="author">
     <button mat-raised-button color="primary" (click)="delete()">Delete</button>
 </div>

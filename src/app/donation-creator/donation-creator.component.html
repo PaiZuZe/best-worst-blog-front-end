@@ -1,0 +1,7 @@
+<form [formGroup]="donationForm" (ngSubmit)=onSubmit()>
+    <mat-form-field appearance="fill">
+        <mat-label for="donationAmount">Donation amount:</mat-label>
+        <input matInput id="donationAmount" type="text" formControlName="donationAmount">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!donationForm.valid">Donate</button>
+</form>

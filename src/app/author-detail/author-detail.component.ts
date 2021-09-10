@@ -41,14 +41,4 @@ export class AuthorDetailComponent implements OnInit {
     this.authorService.deleteById(id)
       .subscribe(resp => this.router.navigateByUrl("/authors"));
   }
-
-  donate(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.donationService.post({authorId: id, donationAmount: 10.0})
-      .subscribe(res => {
-        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-        this.router.onSameUrlNavigation = "reload";
-        this.router.navigate([this.router.url]);
-      });
-  }
 }
