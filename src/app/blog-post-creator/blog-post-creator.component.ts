@@ -24,8 +24,6 @@ export class BlogPostCreatorComponent implements OnInit {
 
   onSubmit(): void {
     this.blogPostService.post(this.blogPostForm.value)
-      .subscribe(resp => this.router.navigateByUrl(`/posts/${resp.id}`),
-        error => window.alert(`${error.status}: This author already has a post with this title OR no author with this ID exists`)
-      );
+      .subscribe(resp => this.router.navigateByUrl(`/posts/${resp.id}`));
   }
 }

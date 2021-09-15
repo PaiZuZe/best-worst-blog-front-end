@@ -23,8 +23,7 @@ export class AuthorCreatorComponent implements OnInit {
 
   onSubmit() {
     this.authorService.post(this.authorForm.value)
-      .subscribe(resp => this.router.navigateByUrl(`authors/${resp.id}`),
-        error => window.alert(`${error.status}: This Author already exists`));
+      .subscribe(resp => this.router.navigateByUrl(`authors/${resp.id}`));
   }
 
 }

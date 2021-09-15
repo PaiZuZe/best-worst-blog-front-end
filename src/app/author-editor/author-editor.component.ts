@@ -36,10 +36,8 @@ export class AuthorEditorComponent implements OnInit {
       .subscribe(resp => {
         this.router.onSameUrlNavigation = "reload";
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-        this.router.navigate([this.router.url])},
-
-        error => window.alert(`${error.status}: This author already exists`)
-    );
+        this.router.navigate([this.router.url])
+      });
   }
 
 }

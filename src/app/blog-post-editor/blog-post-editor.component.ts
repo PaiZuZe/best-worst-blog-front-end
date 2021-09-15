@@ -35,10 +35,8 @@ export class BlogPostEditorComponent implements OnInit {
     .subscribe(resp => {
       this.router.onSameUrlNavigation = "reload";
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-      this.router.navigate([this.router.url])},
-      
-        error => window.alert(`${error.status}: The author already has a post with this title`)
-      );
+      this.router.navigate([this.router.url]);
+    });
   }
 
 }
