@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -25,6 +25,8 @@ import { BlogPostDetailComponent } from './blog-post-detail/blog-post-detail.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlogPostEditorComponent } from './blog-post-editor/blog-post-editor.component';
 import { DonationCreatorComponent } from './donation-creator/donation-creator.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { DonationCreatorComponent } from './donation-creator/donation-creator.co
     BlogPostCreatorComponent,
     BlogPostDetailComponent,
     BlogPostEditorComponent,
-    DonationCreatorComponent
+    DonationCreatorComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,7 @@ import { DonationCreatorComponent } from './donation-creator/donation-creator.co
     MatTabsModule,
     FlexLayoutModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -33,6 +33,6 @@ export class BlogPostService {
   }
 
   public delete(id: number): Observable<unknown> {
-    return this.http.delete(`${this.blogPostUrl}//${id}`);
+    return this.http.delete(`${this.blogPostUrl}/${id}`);
   }
 }
