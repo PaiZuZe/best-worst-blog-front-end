@@ -11,6 +11,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   public login(): Observable<HttpResponse<any>> {
+    window.localStorage.removeItem("jwtToken");
     return this.http.post<any>(this.authUrl, {}, { observe: "response" });
   }
 }

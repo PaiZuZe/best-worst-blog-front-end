@@ -16,7 +16,7 @@ export class DonationService {
 
   constructor(private http: HttpClient) { }
 
-  public post(donation: Donation): Observable<unknown> {
-    return this.http.post<unknown>(`${this.donationsUrl}`, donation, this.httpOptions);
+  public post(donation: Donation): Observable<Donation> {
+    return this.http.post<Donation>(`${this.donationsUrl}`, donation, this.httpOptions);
   }
 }

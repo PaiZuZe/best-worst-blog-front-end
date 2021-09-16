@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BlogPost } from '../model/blog-post';
 import { BlogPostService } from '../service/blog-post.service';
 
 @Component({
@@ -9,9 +10,10 @@ import { BlogPostService } from '../service/blog-post.service';
   styleUrls: ['./blog-post-editor.component.css']
 })
 export class BlogPostEditorComponent implements OnInit {
-  @Input() title?: string;
-  @Input() textBody?: string;
+  
+  @Input() blogPost!: BlogPost;
   @Input() authorId?: number;
+  @Output() blogPostChange = new EventEmitter<BlogPost>();
 
   blogPostForm: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required]), 
@@ -23,8 +25,8 @@ export class BlogPostEditorComponent implements OnInit {
 
   ngOnInit(): void {
     this.blogPostForm.patchValue({
-      title: this.title,
-      textBody: this.textBody,
+      title: this.blogPost.title,
+      textBody: this.blogPost.textBody,
       authorId: this.authorId
     });
   }
@@ -32,11 +34,7 @@ export class BlogPostEditorComponent implements OnInit {
   onSubmit() {
     const id: number = Number(this.route.snapshot.paramMap.get('id'));
     this.blogPostService.put(id, this.blogPostForm.value)
-    .subscribe(resp => {
-      this.router.onSameUrlNavigation = "reload";
-      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-      this.router.navigate([this.router.url]);
-    });
+      .subscribe(resp => this.blogPostChange.emit(resp));
   }
 
 }

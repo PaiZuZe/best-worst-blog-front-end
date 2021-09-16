@@ -1,9 +1,10 @@
-import { Component, Input, OnInit, SimpleChange } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { AuthorService } from '../service/author.service';
+import { Author } from '../model/author';
 
 @Component({
   selector: 'app-author-editor',
@@ -12,8 +13,8 @@ import { AuthorService } from '../service/author.service';
 })
 export class AuthorEditorComponent implements OnInit {
   
-  @Input() firstName?: string;
-  @Input() lastName?: string;
+  @Input() author!: Author;
+  @Output() authorChange = new EventEmitter<Author>();
 
   authorForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
@@ -25,19 +26,15 @@ export class AuthorEditorComponent implements OnInit {
 
   ngOnInit(): void {
     this.authorForm.patchValue({
-      firstName: this.firstName,
-      lastName: this.lastName  
+      firstName: this.author.firstName,
+      lastName: this.author.lastName  
     });
   }
 
   onSubmit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.authorService.put(id, this.authorForm.value)
-      .subscribe(resp => {
-        this.router.onSameUrlNavigation = "reload";
-        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-        this.router.navigate([this.router.url])
-      });
+      .subscribe(resp => this.authorChange.emit(resp));
   }
 
 }

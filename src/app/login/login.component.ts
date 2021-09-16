@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
       const token: string = resp.headers.get("authorization")!;
       if (token != null) {
         window.localStorage.setItem("jwtToken", token);
+        window.alert("You have successfully authenticated");
       }
     });
   }

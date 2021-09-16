@@ -14,8 +14,8 @@ import { DonationService } from '../service/donation.service';
 })
 export class AuthorDetailComponent implements OnInit {
 
-  @Input() author?: Author;
-  @Input() blogPosts?: BlogPost[];
+  author?: Author;
+  blogPosts?: BlogPost[];
 
   constructor(private authorService: AuthorService, private donationService: DonationService, private location: Location, private route: ActivatedRoute,private router: Router) { }
 

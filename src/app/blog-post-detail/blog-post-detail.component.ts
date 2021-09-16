@@ -15,8 +15,8 @@ import { Author } from '../model/author';
 })
 export class BlogPostDetailComponent implements OnInit {
 
-  @Input() blogPost?: BlogPost;
-  @Input() author?: Author;
+  blogPost!: BlogPost;
+  author!: Author;
 
   constructor(private blogPostService: BlogPostService, private authorService: AuthorService, private route: ActivatedRoute, private location: Location, private router: Router) { }
 
