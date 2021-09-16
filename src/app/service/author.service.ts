@@ -31,10 +31,12 @@ export class AuthorService {
   }
 
   post(author: Author): Observable<Author> {
+    this.trim(author);
     return this.http.post<Author>(this.authorsUrl, author, this.httpOptions).pipe(catchError(this.handleError));
   }
 
   put(id: number, author: Author): Observable<Author> {
+    this.trim(author);
     return this.http.put<Author>(`${this.authorsUrl}/${id}`, author, this.httpOptions).pipe(catchError(this.handleError));
   }
 
@@ -60,5 +62,11 @@ export class AuthorService {
     }
     window.alert(`${error.status}: ${errorMsg}`);
     return throwError(error);
+  }
+
+  private trim(author: Author) {
+    author.firstName = author.firstName.trim();
+    author.lastName = author.lastName.trim();
+
   }
 }

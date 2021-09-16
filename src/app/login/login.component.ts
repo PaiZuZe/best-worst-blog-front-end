@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     this.authService.login().subscribe(resp => {
       const token: string = resp.headers.get("authorization")!;
       if (token != null) {
-        window.localStorage.setItem("jwtToken", token);
+        window.sessionStorage.setItem("jwtToken", token);
         window.alert("You have successfully authenticated");
       }
     });

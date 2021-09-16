@@ -26,10 +26,12 @@ export class BlogPostService {
   }
 
   public post(blogPost: BlogPost): Observable<BlogPost>{
+    this.trim(blogPost);
     return this.http.post<BlogPost>(this.blogPostUrl, blogPost, this.httpOptions).pipe(catchError(this.handleError));
   }
 
   public put(id: number, blogPost: BlogPost): Observable<BlogPost> {
+    this.trim(blogPost);
     return this.http.put<BlogPost>(`${this.blogPostUrl}/${id}`, blogPost, this.httpOptions).pipe(catchError(this.handleError));
   }
 
@@ -53,5 +55,10 @@ export class BlogPostService {
     }
     window.alert(`${error.status}: ${errorMsg}`);
     return throwError(error);
+  }
+
+  private trim(blogPost: BlogPost) {
+    blogPost.title = blogPost.title.trim();
+    blogPost.textBody = blogPost.textBody.trim();
   }
 }
