@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { BlogPost } from '../model/blog-post';
+import { AuthorService } from '../service/author.service';
 import { BlogPostService } from '../service/blog-post.service';
 
 @Component({
@@ -10,16 +11,25 @@ import { BlogPostService } from '../service/blog-post.service';
 })
 export class BlogPostsComponent implements OnInit {
   blogPosts: BlogPost[] = [];
+  authorNames: {[id: number]: String} = {};
 
-  constructor(private blogPostService: BlogPostService) { }
+  constructor(private blogPostService: BlogPostService, private authorService: AuthorService) { }
 
   ngOnInit(): void {
     this.getBlogPosts();
+    this.getAuthorNames();
   }
 
   getBlogPosts(): void {
     this.blogPostService.getBlogPosts()
       .subscribe(blogPosts => this.blogPosts = blogPosts);
+  }
+
+  getAuthorNames() {
+    this.authorService.getAuthors()
+      .subscribe(authors => {
+        authors.forEach(author => this.authorNames[author.id] = author.firstName + " " + author.lastName);
+      });
   }
 
 }

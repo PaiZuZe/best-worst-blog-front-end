@@ -11,7 +11,6 @@ import { DonationService } from '../service/donation.service';
 })
 export class DonationCreatorComponent implements OnInit {
 
-  @Input() authorId?: number;
   @Input() author!: Author;
   @Output() authorChange = new EventEmitter<Author>();
 

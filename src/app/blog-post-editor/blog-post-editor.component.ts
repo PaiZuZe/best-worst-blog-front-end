@@ -12,7 +12,7 @@ import { BlogPostService } from '../service/blog-post.service';
 export class BlogPostEditorComponent implements OnInit {
   
   @Input() blogPost!: BlogPost;
-  @Input() authorId?: number;
+  @Input() authorId!: number;
   @Output() blogPostChange = new EventEmitter<BlogPost>();
 
   blogPostForm: FormGroup = new FormGroup({
