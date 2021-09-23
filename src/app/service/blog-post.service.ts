@@ -17,6 +17,10 @@ export class BlogPostService {
 
   constructor(private http: HttpClient) { }
 
+  public getBlogPostsPage(size: number = 5, page: number = 0): Observable<any> {
+    return this.http.get<any>(`${this.blogPostUrl}/pages?size=${size}&page=${page}`).pipe(catchError(this.handleError));
+  }
+
   public getBlogPosts(): Observable<BlogPost[]> {
     return this.http.get<BlogPost[]>(`${this.blogPostUrl}`).pipe(catchError(this.handleError));
   }

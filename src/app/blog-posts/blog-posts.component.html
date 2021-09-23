@@ -5,6 +5,8 @@
         <mat-nav-list>
             <a mat-list-item routerLink="/posts/{{blogPost.id}}" *ngFor="let blogPost of blogPosts"> <p> {{blogPost.title}} <i> by {{authorNames[blogPost.authorId]}} </i> </p> <mat-divider></mat-divider></a>
         </mat-nav-list>
+        <mat-paginator (page)="handleEvent($event)" [length]="length" [pageSize]="size" [pageIndex]="page" [pageSizeOptions]="[5, 10, 25, 100]">
+        </mat-paginator>
     </mat-tab>
     <mat-tab label="Add a post">
         <app-blog-post-creator></app-blog-post-creator>
