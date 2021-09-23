@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 
 import { Author } from '../model/author';
 import { AuthorService } from '../service/author.service';
@@ -10,15 +11,27 @@ import { AuthorService } from '../service/author.service';
 })
 export class AuthorsComponent implements OnInit {
   authors: Author[] = [];
+  length: number = 100;
+  size: number = 5;
+  pageIndex: number = 0;
 
   constructor(private authorService: AuthorService) { }
 
   ngOnInit(): void {
-    this.getAuthors();
+    this.getAuthorsPages();
   }
 
-  getAuthors(): void {
-    this.authorService.getAuthors()
-      .subscribe(authors => this.authors = authors);
+  getAuthorsPages(): void {
+    this.authorService.getAuthorsPage(this.size, this.pageIndex)
+      .subscribe(page => {
+        this.authors = page.content;
+        this.length = page.totalElements
+      });
+  }
+
+  handleEvent(event: PageEvent): void {
+    this.size = event.pageSize;
+    this.pageIndex = event.pageIndex;
+    this.getAuthorsPages();
   }
 }

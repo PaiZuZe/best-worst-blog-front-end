@@ -18,6 +18,10 @@ export class AuthorService {
 
   constructor(private http: HttpClient) { }
 
+  getAuthorsPage(size: number = 5, page: number = 0): Observable<any> {
+    return this.http.get<any>(`${this.authorsUrl}/pages?size=${size}&page=${page}`).pipe(catchError(this.handleError));
+  }
+
   getAuthors(): Observable<Author[]> {
     return this.http.get<Author[]>(`${this.authorsUrl}`).pipe(catchError(this.handleError));
   }
@@ -42,11 +46,6 @@ export class AuthorService {
 
   deleteById(id: number): Observable<unknown> {
     return this.http.delete(`${this.authorsUrl}/${id}`).pipe(catchError(this.handleError));
-  }
-
-  donate(id: number): Observable<any> {
-    const params = new HttpParams({fromString: "donation_amount=10"});
-    return this.http.put(`${this.authorsUrl}/${id}/donate`, null, {params}).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
