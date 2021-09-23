@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { Author } from '../model/author';
 import { AuthorService } from '../service/author.service';
 
 import { BlogPostService } from '../service/blog-post.service';
@@ -14,8 +15,8 @@ import { BlogPostService } from '../service/blog-post.service';
 })
 export class BlogPostCreatorComponent implements OnInit {
 
-  authorsIds: Array<String> = [];
-  filteredAuthorsIds!: Observable<String[]>;
+  authors: Array<Author> = [];
+  filteredAuthors!: Observable<Author[]>;
 
   blogPostForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
@@ -27,19 +28,17 @@ export class BlogPostCreatorComponent implements OnInit {
   constructor(private blogPostService: BlogPostService, private authorService: AuthorService, private router: Router) { }
 
   ngOnInit() {
-    this.getAuthorsIds();
-    this.filteredAuthorsIds = this.blogPostForm.get("authorId")!.valueChanges
+    this.getAuthors();
+    this.filteredAuthors = this.blogPostForm.get("authorId")!.valueChanges
       .pipe(
         startWith(''),
-        map(value => this._filter(value))
+        map(value => typeof value === "string" ? this._filter(value) : this.authors.slice())
       );
   }
 
-  getAuthorsIds() {
+  getAuthors() {
     this.authorService.getAuthors()
-      .subscribe(authors => { 
-        authors.forEach(author => this.authorsIds.push(author.id.toString()));
-      });
+      .subscribe(authors => this.authors = authors);
   }
 
   onSubmit(): void {
@@ -47,8 +46,16 @@ export class BlogPostCreatorComponent implements OnInit {
       .subscribe(resp => this.router.navigateByUrl(`/posts/${resp.id}`));
   }
 
-  private _filter(value: String): String[] {
+  displayFn(authorId: number): string {
+    if (authorId) {
+      let author: Author | undefined = this.authors.find(author => authorId === author.id);
+      return author!.firstName + " " + author!.lastName;
+    }
+    return '';
+  }
+
+  private _filter(value: String): Author[] {
     const filterValue = value.toLowerCase();
-    return this.authorsIds.filter(option => option.toLowerCase().includes(filterValue));
+    return this.authors.filter(option => (option.firstName.toLowerCase() + " " + option.lastName.toLowerCase()).includes(filterValue));
   }
 }
