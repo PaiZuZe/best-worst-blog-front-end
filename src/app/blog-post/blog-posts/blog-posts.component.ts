@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 
-import { BlogPost } from '../model/blog-post';
-import { AuthorService } from '../service/author.service';
-import { BlogPostService } from '../service/blog-post.service';
+import { BlogPost } from '../../model/blog-post';
+import { AuthorService } from '../../service/author.service';
+import { BlogPostService } from '../../service/blog-post.service';
 
 @Component({
   selector: 'app-blog-posts',

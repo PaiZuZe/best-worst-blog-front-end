@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 
-import { Author } from '../model/author';
-import { AuthorService } from '../service/author.service';
+import { Author } from '../../model/author';
+import { AuthorService } from '../../service/author.service';
 
 @Component({
   selector: 'app-authors',

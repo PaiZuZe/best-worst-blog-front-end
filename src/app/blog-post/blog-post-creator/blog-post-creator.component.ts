@@ -3,10 +3,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { Author } from '../model/author';
-import { AuthorService } from '../service/author.service';
+import { Author } from '../../model/author';
+import { AuthorService } from '../../service/author.service';
 
-import { BlogPostService } from '../service/blog-post.service';
+import { BlogPostService } from '../../service/blog-post.service';
 
 @Component({
   selector: 'app-blog-post-creator',

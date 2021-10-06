@@ -2,10 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Author } from '../model/author';
-import { AuthorService } from '../service/author.service';
-import { BlogPost } from '../model/blog-post';
-import { DonationService } from '../service/donation.service';
+import { Author } from '../../model/author';
+import { AuthorService } from '../../service/author.service';
+import { BlogPost } from '../../model/blog-post';
+import { DonationService } from '../../service/donation.service';
 
 @Component({
   selector: 'app-author-detail',

@@ -3,8 +3,8 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { AuthorService } from '../service/author.service';
-import { Author } from '../model/author';
+import { AuthorService } from '../../service/author.service';
+import { Author } from '../../model/author';
 
 @Component({
   selector: 'app-author-editor',

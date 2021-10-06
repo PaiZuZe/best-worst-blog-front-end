@@ -3,10 +3,10 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import {concatMap, tap} from 'rxjs/operators';
 
-import { BlogPost } from '../model/blog-post';
-import { BlogPostService } from '../service/blog-post.service';
-import { AuthorService } from '../service/author.service';
-import { Author } from '../model/author';
+import { BlogPost } from '../../model/blog-post';
+import { BlogPostService } from '../../service/blog-post.service';
+import { AuthorService } from '../../service/author.service';
+import { Author } from '../../model/author';
 
 @Component({
   selector: 'app-blog-post-detail',

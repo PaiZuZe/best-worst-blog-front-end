@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthorsComponent } from './authors/authors.component';
-import { AuthorDetailComponent } from './author-detail/author-detail.component';
+import { AuthorsComponent } from './author/authors/authors.component';
+import { AuthorDetailComponent } from './author/author-detail/author-detail.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
-import { BlogPostsComponent } from './blog-posts/blog-posts.component';
-import { BlogPostDetailComponent } from './blog-post-detail/blog-post-detail.component';
+import { BlogPostsComponent } from './blog-post/blog-posts/blog-posts.component';
+import { BlogPostDetailComponent } from './blog-post/blog-post-detail/blog-post-detail.component';
 
 const routes: Routes = [
   { path: 'authors', component: AuthorsComponent },

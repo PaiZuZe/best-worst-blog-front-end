@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AuthorService } from '../service/author.service';
+import { AuthorService } from '../../service/author.service';
 
 @Component({
   selector: 'app-author-creator',
