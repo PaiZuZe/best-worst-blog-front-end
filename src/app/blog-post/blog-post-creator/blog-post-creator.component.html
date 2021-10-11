@@ -11,8 +11,8 @@
                 <mat-form-field appearance="fill">
                     <mat-label for="authorId">Author ID: </mat-label>
                     <input matInput id="authorId" type="text" formControlName="authorId" [matAutocomplete]="auto">
-                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn.bind(this)">
-                        <mat-option *ngFor="let author of filteredAuthors |async" [value]="author.id">
+                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                        <mat-option *ngFor="let author of filteredAuthors |async" [value]="author">
                             {{author.firstName}} {{author.lastName}}
                         </mat-option>
                     </mat-autocomplete>

@@ -21,7 +21,7 @@ export class AuthorEditorComponent implements OnInit {
     lastName: new FormControl('', [Validators.required]),
   });
   
-  constructor(private route: ActivatedRoute, private authorService: AuthorService, private location: Location, private router: Router) { 
+  constructor(private route: ActivatedRoute, private authorService: AuthorService) { 
   }
 
   ngOnInit(): void {

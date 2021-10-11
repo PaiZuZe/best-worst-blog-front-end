@@ -26,6 +26,10 @@ export class AuthorService {
     return this.http.get<Author[]>(`${this.authorsUrl}`).pipe(catchError(this.handleError));
   }
 
+  getAuthorsByFullName(fullName: String): Observable<Author[]> {
+    return this.http.get<Author[]>(`${this.authorsUrl}/fullname?fullName=${fullName}`).pipe(catchError(this.handleError));
+  }
+
   getAuthor(id: number): Observable<Author> {
     return this.http.get<Author>(`${this.authorsUrl}/${id}`).pipe(catchError(this.handleError));
   }
