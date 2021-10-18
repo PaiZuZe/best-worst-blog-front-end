@@ -9,7 +9,7 @@
             </td>
             <td>
                 <mat-form-field appearance="fill">
-                    <mat-label for="authorId">Author ID: </mat-label>
+                    <mat-label for="authorId">Author: </mat-label>
                     <input matInput id="authorId" type="text" formControlName="authorId" [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                         <mat-option *ngFor="let author of filteredAuthors |async" [value]="author">
